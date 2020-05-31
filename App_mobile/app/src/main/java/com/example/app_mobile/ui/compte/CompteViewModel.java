@@ -1,16 +1,15 @@
-package com.example.app_mobile.ui.home;
+package com.example.app_mobile.ui.compte;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
-
+public class CompteViewModel extends ViewModel {
     private MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public CompteViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("ICI C'EST LE COMPTE");
     }
 
     public LiveData<String> getText() {

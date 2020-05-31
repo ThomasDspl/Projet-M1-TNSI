@@ -1,16 +1,16 @@
-package com.example.app_mobile.ui.gallery;
+package com.example.app_mobile.ui.accueil;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class AccueilViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public AccueilViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+
     }
 
     public LiveData<String> getText() {

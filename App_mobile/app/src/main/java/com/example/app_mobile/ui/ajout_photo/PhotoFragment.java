@@ -1,4 +1,4 @@
-package com.example.app_mobile.ui.gallery;
+package com.example.app_mobile.ui.ajout_photo;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.app_mobile.R;
 
-public class GalleryFragment extends Fragment {
+public class PhotoFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private PhotoViewModel photoViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        photoViewModel =
+                ViewModelProviders.of(this).get(PhotoViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_ajoutphoto, container, false);
+        final TextView textView = root.findViewById(R.id.text_slideshow);
+        photoViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

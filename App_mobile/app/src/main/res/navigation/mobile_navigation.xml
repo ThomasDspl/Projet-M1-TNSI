@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_accueil"
-        android:name="com.example.app_mobile.ui.home.HomeFragment"
+        android:name="com.example.app_mobile.ui.accueil.AccueilFragment"
         android:label="@string/menu_accueil"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_accueil">
 
         <action
             android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_accueil_second"
-        android:name="com.example.app_mobile.ui.home.HomeSecondFragment"
+        android:name="com.example.app_mobile.ui.accueil.HomeSecondFragment"
         android:label="@string/accueil_second"
         tools:layout="@layout/fragment_home_second">
         <action
@@ -30,14 +30,20 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_stats"
-        android:name="com.example.app_mobile.ui.gallery.GalleryFragment"
-        android:label="@string/menu_stats"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
         android:id="@+id/nav_ajoutphoto"
-        android:name="com.example.app_mobile.ui.slideshow.SlideshowFragment"
+        android:name="com.example.app_mobile.ui.ajout_photo.PhotoFragment"
         android:label="@string/menu_ajoutphoto"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_ajoutphoto" />
+    <fragment
+        android:id="@+id/nav_classement"
+        android:name="com.example.app_mobile.ui.classement.ClassementFragment"
+        android:label="@string/menu_classement" />
+    <fragment
+        android:id="@+id/nav_carte"
+        android:name="com.example.app_mobile.ui.carte.CarteFragment"
+        android:label="@string/menu_carte" />
+    <fragment
+        android:id="@+id/nav_compte"
+        android:name="com.example.app_mobile.ui.compte.CompteFragment"
+        android:label="@string/menu_compte" />
 </navigation>
