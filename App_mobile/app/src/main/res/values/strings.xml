@@ -7,9 +7,16 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_accueil">Accueil</string>
+    <string name="menu_stats">Statistiques</string>
+    <string name="menu_ajoutphoto">Ajouter une photo</string>
+    <string name="menu_carte">Carte</string>
+    <string name="menu_classement">Classement</string>
+    <string name="menu_compte">Compte</string>
 
-    <string name="home_second">Home Second</string>
+
+    <string name="accueil_second">Accueil Second</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
