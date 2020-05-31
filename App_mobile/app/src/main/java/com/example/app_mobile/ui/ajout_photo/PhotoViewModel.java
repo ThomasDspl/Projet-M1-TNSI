@@ -10,7 +10,6 @@ public class PhotoViewModel extends ViewModel {
 
     public PhotoViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("ICI C'EST LA PHOTO");
     }
 
     public LiveData<String> getText() {

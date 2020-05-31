@@ -9,7 +9,6 @@ public class CarteViewModel extends ViewModel {
 
     public CarteViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("ICI C'EST LA CARTE");
     }
 
     public LiveData<String> getText() {
