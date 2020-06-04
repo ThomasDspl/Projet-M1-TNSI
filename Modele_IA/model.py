@@ -5,7 +5,7 @@ from PIL import Image
 import random
 import numpy as np
 
-def creation_modele():
+def creation_modele(Freeze=False):
     """   Création du modèle avec extraction des features de l'image: 
       D'abord une couche extraction des features composé d'une succesion de:
       une couche de Convolution 2D (kernel 3x3, un stride de 1 avec une activation 'relu')
@@ -27,6 +27,9 @@ def creation_modele():
         keras.layers.Dense(512, activation='relu'),
         keras.layers.Dense(3)
     ])
+    if Freeze:
+        for l in model.layers: 
+            l.trainable=False
     #On configure le modèle avec une fonction d'optimisation et une fonction de loss
     model.compile(optimizer='adam',
                 loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
@@ -98,15 +101,22 @@ def sauvegarde_poids_model(model, chemin_fichier):
     #Sauvegade des poids du modèle pour pouvoir le réutiliser sans devoir le réentrainer
     model.save_weights(chemin_fichier)
 
+def save(model, chemin):
+    model.save(chemin)
+    #tf.saved_model.save(model, chemin)
+
 if(__name__ == '__main__'):
     images, labels = importation_et_traitement_images('./BANK_images/donnees.cvs')
     model = creation_modele()
     train_images, train_labels, test_images, test_labels = creation_train_et_test_images()
-    train_model(model, train_images, train_labels, 5)
+    train_model(model, train_images, train_labels, 15)
     loss, acc = test_model(model, test_images, test_labels)
     #Affichage de la précision
     print('\nTest accuracy:', acc)
     sauvegarde_poids_model(model, './poids_modele/poids')
+    model2 = creation_modele(True)
+    model2.load_weights('./poids_modele/poids')
+    save(model2, './save_modele')
 
 
 

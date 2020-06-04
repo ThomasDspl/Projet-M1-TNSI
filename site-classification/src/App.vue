@@ -14,6 +14,12 @@ export default {
   components: {
     Header,
     Footer
+  },
+  beforeMount(){
+    if(this.$session.exists()){
+      this.$store.commit('setLoginStatus', true)
+    }
+      
   }
 }
 </script>

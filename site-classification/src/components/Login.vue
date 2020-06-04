@@ -56,7 +56,6 @@ export default {
                 this.$router.push('/')
             }else {
                 console.log("WHYYYYY");
-                
             }
         }
     },
