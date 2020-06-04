@@ -23,15 +23,15 @@ public class ClassementFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         classementViewModel =
                 ViewModelProviders.of(this).get(ClassementViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_classement, container, false);
-        final TextView textView = root.findViewById(R.id.text_classement);
+        View classement = inflater.inflate(R.layout.fragment_classement, container, false);
+        final TextView textView = classement.findViewById(R.id.text_classement);
         classementViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
         });
-        return root;
+        return classement;
     }
 
 

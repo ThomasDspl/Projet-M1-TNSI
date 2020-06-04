@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/nav_connexion"
         android:layout_width="130dp"
         android:layout_height="80dp"
         android:layout_below="@id/text_photo"
@@ -40,7 +40,7 @@
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:layout_below="@id/button"
+        android:layout_below="@id/nav_connexion"
         android:layout_marginLeft="150dp"
         android:layout_marginTop="33dp"
         android:layout_marginRight="150dp"

@@ -21,15 +21,15 @@ public class CarteFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         carteViewModel =
                 ViewModelProviders.of(this).get(CarteViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_carte, container, false);
-        final TextView textView = root.findViewById(R.id.text_carte);
+        View carte = inflater.inflate(R.layout.fragment_carte, container, false);
+        final TextView textView = carte.findViewById(R.id.text_carte);
         carteViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
         });
-        return root;
+        return carte;
     }
 }
 
