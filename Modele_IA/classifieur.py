@@ -11,7 +11,7 @@ from model import creation_modele
 
 #Definition nom des classes (ici 0= bouteille en plastique par ex)
 CLASS_NAME = ['bouteille en plastique', 'sac en plastique', 'canette']
-PATH_POIDS = './poids_modele/poids'
+PATH_POIDS = "‪C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Modele_IA\\poids_modele\\poids"
 
 
 def classifier_image(path_image):
