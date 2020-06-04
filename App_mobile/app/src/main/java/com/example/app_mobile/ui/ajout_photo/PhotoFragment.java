@@ -15,29 +15,29 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.app_mobile.Connexion;
 import com.example.app_mobile.R;
-import com.example.app_mobile.ui.connexion.Connexion;
 
 public class PhotoFragment extends Fragment {
 
     private PhotoViewModel photoViewModel;
     private Object Bundle;
 
-    public View onCreateView(@NonNull final LayoutInflater inflater,
-                             final ViewGroup container, final Bundle savedInstanceState) {
-        photoViewModel =
-                ViewModelProviders.of(this).get(PhotoViewModel.class);
+    public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
+
+        photoViewModel = ViewModelProviders.of(this).get(PhotoViewModel.class);
         final View photo = inflater.inflate(R.layout.fragment_ajoutphoto, container, false);
         final TextView textView = photo.findViewById(R.id.text_photo);
+
         photoViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
         });
-        View view = inflater.inflate(R.layout.fragment_ajoutphoto,
-                container, false);
-        Button button = (Button) view.findViewById(R.id.nav_connexion);
+
+        View view = inflater.inflate(R.layout.fragment_ajoutphoto, container, false);
+        Button button = (Button) photo.findViewById(R.id.nav_connexion);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
