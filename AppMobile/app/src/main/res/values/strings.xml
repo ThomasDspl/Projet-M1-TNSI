@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">AppMobile</string>
+    <string name="tab_text_1">Accueil</string>
+    <string name="tab_text_2">Ajouter une photo</string>
+    <string name="tab_text_3">Classement</string>
+    <string name="tab_text_4">Compte</string>
+    <string name="tab_text_5">Connexion</string>
+    <string name="title_activity_register">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_password2">Confirm Password</string>
+    <string name="prompt_pseudo">Pseudo</string>
+    <string name="action_sign_in">Register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>

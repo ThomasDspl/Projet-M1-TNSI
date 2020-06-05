@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-  >
+    android:background="@android:color/holo_green_light"
+    >
 
     <TextView
         android:id="@+id/text_photo"
@@ -24,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/nav_connexion"
+        android:id="@+id/btn_connexion"
         android:layout_width="130dp"
         android:layout_height="80dp"
         android:layout_below="@id/text_photo"
@@ -37,10 +38,10 @@
         tools:layout_editor_absoluteY="409dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_inscription"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:layout_below="@id/nav_connexion"
+        android:layout_below="@id/btn_connexion"
         android:layout_marginLeft="150dp"
         android:layout_marginTop="33dp"
         android:layout_marginRight="150dp"
