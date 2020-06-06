@@ -154,7 +154,7 @@ public class DataBaseService {
 			SessionFactory sf = config.buildSessionFactory();
 			Session session = sf.openSession();
 
-			Query query = session.createQuery("Select u.pseudo, Count(i.id), u.score from User u, Image i where i.idUser = u.id "
+			Query query = session.createQuery("Select u.pseudo, Count(i), u.score from User u, Image i where i.idUser = u.id "
 					+ "GROUP BY u.pseudo "
 					+ "Order by u.score DESC");
 			JSONObject result = new JSONObject();
