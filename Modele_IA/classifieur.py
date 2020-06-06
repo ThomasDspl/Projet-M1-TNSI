@@ -13,10 +13,12 @@ from model import creation_modele
 CLASS_NAME = ['bouteille en plastique', 'sac en plastique', 'canette']
 PATH_POIDS = "‪C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Modele_IA\\poids_modele\\poids"
 
+my_devices = tf.config.experimental.list_physical_devices(device_type='CPU')
+tf.config.experimental.set_visible_devices(devices= my_devices, device_type='CPU')
 
 def classifier_image(path_image):
     model = creation_modele()
-    model.load_weights(PATH_POIDS)
+    model.load_weights(args.path_poids)
     probability_model = tf.keras.Sequential([model, 
                                              tf.keras.layers.Softmax()])
     test_images = Image.open(path_image)
@@ -46,11 +48,13 @@ if (__name__ == '__main__'):
 
     #ajout d'arguments au parser
     parser.add_argument('path_image', help="Chemin de l'image à tester")
+    parser.add_argument('path_poids')
+    parser.add_argument('path_json')
 
     #parser les argument
     args = parser.parse_args()
     #classifier_image('test_image_prediction/c.jpg')
     jsonO = classifier_image(args.path_image)
     #création du fichier json
-    with open("./prediction.json", "w") as file:
+    with open(args.path_json+"/prediction.json", "w") as file:
         json.dump(jsonO, file)

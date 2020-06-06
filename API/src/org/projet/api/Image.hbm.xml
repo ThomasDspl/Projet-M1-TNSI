@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE hibernate-mapping
+    PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.projet.api.Image" table="image">
+		<id name="id" type="int" column="idImage">
+			<generator class="increment">
+			</generator>
+		</id>
+		<property name="idUser" type="int"
+			not-null="true"></property>
+		<property name="chemin" type="string"
+			not-null="true"></property>
+		<property name="nomImage" column="nom_image" type="string"
+			not-null="true"></property>
+		<property name="classe" column="class" type="string"
+			not-null="true"></property>
+	</class>
+</hibernate-mapping>
