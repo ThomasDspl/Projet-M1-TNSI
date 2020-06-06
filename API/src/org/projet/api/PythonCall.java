@@ -2,19 +2,19 @@ package org.projet.api;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
+import org.projet.api.constantes.Chemins;
+
 public class PythonCall {
-	final static String DOSSIER = "C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Modele_IA\\";
+	public final static String DOSSIER_MODELE = "C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Modele_IA\\";
 	Process mProcess;
 
 	public void runScript(String path, String pathResult) {
 		Process process;
 		try {
-			System.out.println("PATH: " + path);
-			System.out.println("PATH RESULT: " + pathResult);
 			ProcessBuilder pb = new ProcessBuilder("python", 
-					DOSSIER + "classifieur.py", 
+					Chemins.DOSSIER_MODELE + "classifieur.py", 
 					path, 
-					DOSSIER + "poids_modele\\poids",
+					Chemins.DOSSIER_MODELE + "poids_modele\\poids",
 					pathResult);
 			//ProcessBuilder pb = new ProcessBuilder("python", "C:\\Users\\Stephane\\Documents\\hw.py", "a1");
 			process = pb.start();

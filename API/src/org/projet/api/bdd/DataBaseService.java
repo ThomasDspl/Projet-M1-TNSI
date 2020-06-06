@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import org.projet.api.Image;
 import org.projet.api.PythonCall;
 import org.projet.api.User;
+import org.projet.api.constantes.Chemins;
 
 public class DataBaseService {
 
@@ -50,13 +51,6 @@ public class DataBaseService {
 		} catch (NoResultException e) {
 			u = null;
 		}
-//		Map<Integer, User> users = BDD.getInstance().getMapUser();
-//		for (Map.Entry<Integer, User> entry : users.entrySet()) {
-//			if (entry.getValue().getEmail().equals(email) && entry.getValue().getPassword().equals(password)) {
-//				u = entry.getValue();
-//				break;
-//			}
-//		}
 
 		return u;
 	}
@@ -160,7 +154,7 @@ public class DataBaseService {
 			SessionFactory sf = config.buildSessionFactory();
 			Session session = sf.openSession();
 
-			Query query = session.createQuery("Select u.email, Count(i.id), u.score from User u, Image i where i.idUser = u.id "
+			Query query = session.createQuery("Select u.pseudo, Count(i.id), u.score from User u, Image i where i.idUser = u.id "
 					+ "GROUP BY u.pseudo "
 					+ "Order by u.score DESC");
 			JSONObject result = new JSONObject();
@@ -169,7 +163,7 @@ public class DataBaseService {
 			results.forEach((lr)->{
 				JSONObject json = new JSONObject();
 				Object[] r = (Object[])lr;
-				json.put("psuedo", (String)r[0]);
+				json.put("pseudo", (String)r[0]);
 				json.put("nb_image_analysee", String.valueOf((Long)r[1]));
 				json.put("score", String.valueOf((int)r[2]));
 				//String pseudo = (String)r[0];
@@ -200,8 +194,8 @@ public class DataBaseService {
 			int id = (int)query.uniqueResult();
 			PythonCall scriptPython = new PythonCall();
 			String path = imagePath + imageName;
-			scriptPython.runScript(path, "C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Modele_IA");
-			File prediction = new File("C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Modele_IA\\prediction.json");
+			scriptPython.runScript(path, Chemins.DOSSIER_MODELE);
+			File prediction = new File(Chemins.DOSSIER_MODELE+"prediction.json");
 			Scanner myReader;
 			String jsonText = "";
 			try {
