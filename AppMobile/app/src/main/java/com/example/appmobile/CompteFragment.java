@@ -29,8 +29,6 @@ public class CompteFragment extends Fragment {
             }
         });
 
-
-
-        return inflater.inflate(R.layout.fragment_compte,container, false);
+        return rootView;
     }
 }

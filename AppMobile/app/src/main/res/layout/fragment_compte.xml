@@ -3,23 +3,21 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fragment_compte"
+        android:layout_height="match_parent">
 
-        >
-        <TextView
-            android:id="@+id/text_connexion"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_marginStart="130dp"
-            android:layout_marginLeft="150dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="150dp"
-            android:gravity="center"
-            android:text="Connexion : "
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true" />
+    <TextView
+        android:id="@+id/text_connexion"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="150dp"
+        android:gravity="center"
+        android:text="Connexion : "
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true" />
 
 
     <EditText

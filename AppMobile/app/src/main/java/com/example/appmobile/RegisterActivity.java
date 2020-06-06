@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -66,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                String url = "https://" + getResources().getString(R.string.baseURL) + "/API/users/registration";
+                String url = "http://" + getResources().getString(R.string.baseURL) + "/API/users/registration";
 
                 JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>()
                         {
@@ -89,6 +90,12 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }
                 );
+                
+                getRequest.setRetryPolicy(new DefaultRetryPolicy(
+                        0,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
 
                 MySingleton.getInstance(getBaseContext()).addToRequestQueue(getRequest);
             }
