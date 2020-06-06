@@ -45,25 +45,24 @@
         android:inputType="textPassword" />
 
     <Button
-            android:id="@+id/btn_connecter"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Se connecter"
-            android:layout_below="@+id/editmdp_connexion"
-            android:layout_marginTop="40dp"
-            />
+        android:id="@+id/btn_connecter"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Se connecter"
+        android:layout_below="@+id/editmdp_connexion"
+        android:layout_marginTop="40dp"
+        />
 
-        <Button
+    <Button
+        android:id="@+id/btn_inscrire"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="S'incrire"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_connecter"
+        android:layout_marginTop="0dp" />
 
-            android:layout_width="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="S'incrire"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_connecter"
-            android:layout_marginTop="0dp"
-            />
-
-    </RelativeLayout>
+</RelativeLayout>
 
 
