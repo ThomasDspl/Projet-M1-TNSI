@@ -75,8 +75,6 @@ public class RegisterActivity extends AppCompatActivity {
                             public void onResponse(JSONObject response) {
                                 // display response
                                 Log.d("Response", response.toString());
-                                SaveSharedPreference.setUserName(getBaseContext(), pseudo);
-
                                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                                 startActivity(intent);
 
@@ -90,10 +88,10 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }
                 );
-                
+
                 getRequest.setRetryPolicy(new DefaultRetryPolicy(
                         0,
-                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        0,
                         DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 

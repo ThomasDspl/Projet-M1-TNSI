@@ -23,25 +23,20 @@ import com.example.appmobile.ui.main.PageViewModel;
 import com.example.appmobile.ui.main.SectionsPagerAdapter;
 
 public class PhotoFragment extends Fragment {
-    Button connexion = null;
-    Button inscription=null;
-    Activity activity;
-
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View inflatedView = inflater.inflate(R.layout.fragment_photo, container, false);
         
-
+        /*
         if(SaveSharedPreference.getUserName(getActivity().getBaseContext()).length() != 0)
         {
-            /*ViewGroup layout = (ViewGroup) connexion.getParent();
+            ViewGroup layout = (ViewGroup) connexion.getParent();
             if(null!=layout) //for safety only  as you are doing onClick
                 layout.removeView(connexion);
-                layout.removeView(inscription);*/
-        }
+                layout.removeView(inscription);
+        }*/
 
 
         return inflatedView;
