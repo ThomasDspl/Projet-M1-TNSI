@@ -6,6 +6,8 @@
     <string name="tab_text_4">Compte</string>
     <string name="tab_text_5">Connexion</string>
     <string name="title_activity_register">Sign in</string>
+    <string name="prompt_nom">Nom</string>
+    <string name="prompt_prenom">Prénom</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_username">Username</string>
