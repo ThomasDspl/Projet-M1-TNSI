@@ -24,29 +24,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_connexion"
-        android:layout_width="130dp"
-        android:layout_height="80dp"
-        android:layout_below="@id/text_photo"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="313dp"
-        android:layout_marginRight="140dp"
-        android:gravity="center"
-        android:text="Se connecter"
-        tools:layout_editor_absoluteX="194dp"
-        tools:layout_editor_absoluteY="409dp" />
 
-    <Button
-        android:id="@+id/btn_inscription"
+    <TextView
+        android:id="@+id/text_connexion"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:layout_below="@id/btn_connexion"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginRight="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_photo"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="8dp"
         android:gravity="center"
-        android:text="S'incrire"
-        tools:layout_editor_absoluteX="194dp"
-        tools:layout_editor_absoluteY="409dp" />
+        android:text="@string/messageWithLink"
+        android:textColorLink="@color/cardview_dark_background"
+        android:linksClickable="true"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </RelativeLayout>
