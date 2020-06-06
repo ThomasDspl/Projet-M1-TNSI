@@ -41,14 +41,17 @@ public class DataBaseService {
 		try {
 			SessionFactory sf = config.buildSessionFactory();
 			Session session = sf.openSession();
+			//check si l'email et le mot de passe chiffé sont présent en base
 			TypedQuery<User> query = session
 					.createQuery("Select u from User u where u.email = :email and u.password = :password", User.class)
 					.setParameter("email", email).setParameter("password", password);
+			//on récupère l'user si il existe
 			u = query.getSingleResult();
 			session.close();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		} catch (NoResultException e) {
+			//si la query donne aucun résultat
 			u = null;
 		}
 
@@ -63,7 +66,7 @@ public class DataBaseService {
 	 * @param surname  nom de la personne
 	 * @param email    de la personne
 	 * @param password de la personne
-	 * @return vrai si le compte a etait creer faux sinom
+	 * @return vrai si le compte a etait creer faux sinon
 	 */
 	public Boolean registration(final String name, final String surname, final String email, final String password, final String pseudo) {
 		if (name != null && surname != null && password != null && email != null) {
@@ -74,6 +77,7 @@ public class DataBaseService {
 			try {
 				SessionFactory sf = config.buildSessionFactory();
 				Session session = sf.openSession();
+				//check si l'email est déjà en base
 				TypedQuery<User> query = session.createQuery("Select u from User u where u.email = :email", User.class)
 						.setParameter("email", email);
 				try {
@@ -81,7 +85,7 @@ public class DataBaseService {
 				} catch (NoResultException e) {
 
 				}
-				
+				//check si le pseudo est déjà en base
 				query = session.createQuery("Select u from User u where u.pseudo = :pseudo", User.class)
 						.setParameter("pseudo", pseudo);
 				try {
@@ -89,9 +93,11 @@ public class DataBaseService {
 				} catch (NoResultException e) {
 
 				}
+				//si ni l'email, ni le pseudo n'est en base, alors on peut créer le nouvel User
 				if (u == null) {
 					User n = new User(name, surname, 0, email, password, pseudo);
 					Transaction tx = session.beginTransaction();
+					//mise en base
 					session.persist(n);
 					tx.commit();
 					session.close();
@@ -108,6 +114,7 @@ public class DataBaseService {
 
 	/**
 	 * Retourne le nombre d'objets 0,1, 2 analysés au total
+	 * @return String (formaté en JSON) des statistiques du nombre d'images classifier ainsi que le détail de chaque classe
 	 */
 	public String getStatsImages() {
 		Configuration config = new Configuration();
@@ -154,23 +161,23 @@ public class DataBaseService {
 			SessionFactory sf = config.buildSessionFactory();
 			Session session = sf.openSession();
 
+			//récupération du group Pseudo / nb image upload/ score pour chaque personne (qui on au moins upload une image)
 			Query query = session.createQuery("Select u.pseudo, Count(i), u.score from User u, Image i where i.idUser = u.id "
 					+ "GROUP BY u.pseudo "
 					+ "Order by u.score DESC");
 			JSONObject result = new JSONObject();
 			List results = query.list();
 			session.close();
+			//On boucle sur les résultats de la querry (Un tableau de tableau d'Object)
 			results.forEach((lr)->{
 				JSONObject json = new JSONObject();
+				//On récupère le tableau d'Object
 				Object[] r = (Object[])lr;
+				//On créer le json, chaque case on respond au sens de la querry (pseudo, count, score)
 				json.put("pseudo", (String)r[0]);
 				json.put("nb_image_analysee", String.valueOf((Long)r[1]));
 				json.put("score", String.valueOf((int)r[2]));
-				//String pseudo = (String)r[0];
-				//Long count = (Long)r[1];
-				//int score = (int)r[2];
 				result.append("users", json);
-				//System.out.println("Email: "+ email +"\tCount: " + count + "\tScore: " + score);
 			});
 			
 			return result.toString();
@@ -181,7 +188,14 @@ public class DataBaseService {
 		return null;
 	}
 	
-	
+	/**
+	 * Appelle le modèle de classification et renvoie la classe de l'image ainsi que les probabilité de chaque classe pour l'image. 
+	 * Mets aussi l'image dans la base de donnée.
+	 * @param imageName le nom de l'image à classifier
+	 * @param pseudoUploader le pseudo de la personne qui à envoyer l'image
+	 * @param imagePath le chemin de l'image (hors nom)
+	 * @return String (formaté en JSON de la forme {class : "CLASS", proba: { 0: reel, 1: reel, 2: reel}})
+	 */
 	public String uploadImage(final String imageName, final String pseudoUploader, final String imagePath) {
 		Configuration config = new Configuration();
 		config.configure();
@@ -189,12 +203,15 @@ public class DataBaseService {
 		try {
 			SessionFactory sf = config.buildSessionFactory();
 			Session session = sf.openSession();
-
+			//on récupère l'id de l'uploader
 			Query query = session.createQuery("Select u.id from User u where u.pseudo = :pseudo").setParameter("pseudo", pseudoUploader);
 			int id = (int)query.uniqueResult();
+			//initialisation de la classe d'appelle au python
 			PythonCall scriptPython = new PythonCall();
 			String path = imagePath + imageName;
+			//On appelle le modele de classification avec le chemin de l'image et le chemin de sortie pour le json genérer
 			scriptPython.runScript(path, Chemins.DOSSIER_MODELE);
+			//Ouverture du json générer par le modele
 			File prediction = new File(Chemins.DOSSIER_MODELE+"prediction.json");
 			Scanner myReader;
 			String jsonText = "";
@@ -205,18 +222,19 @@ public class DataBaseService {
 				}
 				myReader.close();
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			prediction.delete();
 			JSONObject js = new JSONObject(jsonText);
 			String classe = js.getString("prediction");
 			JSONObject prediction_prob = js.getJSONObject("prediction_propabilite");
+			//creation de l'image pour la mise en base et mise en base
 			Image imageBDD = new Image(id, imagePath, imageName, classe);
 			Transaction tx = session.beginTransaction();
 			session.persist(imageBDD);
 			tx.commit();
 			session.close();
+			//creation du json de sortie
 			js = new JSONObject();
 			js.put("class", classe);
 			js.put("proba", prediction_prob);

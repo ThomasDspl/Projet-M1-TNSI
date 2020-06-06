@@ -46,7 +46,7 @@ public class UserService {
 		if (user != null) {
 			response = Response.ok().entity(user).build();
 		} else {
-			response = Response.status(Response.Status.UNAUTHORIZED).build();
+			response = Response.status(Response.Status.FORBIDDEN).build();
 		}
 		return response;
 	}
@@ -70,7 +70,7 @@ public class UserService {
 		final String pseudo = paramsJSON.getString("pseudo");
 		Boolean response = dataBaseService.registration(name, surname, email, password, pseudo);
 		if (response == true) {
-			return Response.ok("Your account it been created").build();
+			return Response.ok("{message: \"Your account it been created\"}").build();
 		}
 		return Response.status(Response.Status.FORBIDDEN).build();
 	}
