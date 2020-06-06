@@ -33,128 +33,22 @@ public class PhotoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View inflatedView = inflater.inflate(R.layout.fragment_photo, container, false);
-        connexion = (Button) inflatedView.findViewById(R.id.btn_connexion);
+        
 
-        connexion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupConnexion();
-            }
-
-
-        });
-        inscription = (Button) inflatedView.findViewById(R.id.btn_inscription);
-
-        inscription.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getActivity(),RegisterActivity.class);
-                startActivity(intent);
-            }
-
-
-        });
-
+        if(SaveSharedPreference.getUserName(getActivity().getBaseContext()).length() != 0)
+        {
+            /*ViewGroup layout = (ViewGroup) connexion.getParent();
+            if(null!=layout) //for safety only  as you are doing onClick
+                layout.removeView(connexion);
+                layout.removeView(inscription);*/
+        }
 
 
         return inflatedView;
     }
-    private void PopupConnexion(){
-        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-
-        alert.setMessage("Pseudo :");
-        EditText input = new EditText(getActivity());
-        alert.setView(input);
-
-        alert.setPositiveButton("Suivant", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-
-                alert.setTitle("Title");
-                alert.setMessage("Mot de passe");
-                final EditText input = new EditText(getActivity());
-                alert.setView(input);
-
-                alert.setPositiveButton("Valider", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
 
 
-                    }
-                });
-                alert.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        // Canceled.
-                    }
-                });
-                alert.show();
 
-
-            }
-        });
-        alert.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                // Canceled.
-            }
-        });
-
-        alert.show();
-    }
-    private void PopupConnexion2(){
-        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-        alert.setMessage("Email :");
-        EditText input = new EditText(getActivity());
-        alert.setView(input);
-
-        alert.setPositiveButton("Suivant", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-                        alert.setMessage("Pseudo :");
-                        EditText input = new EditText(getActivity());
-                        alert.setView(input);
-
-                        alert.setPositiveButton("Suivant", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-
-                                alert.setTitle("Title");
-                                alert.setMessage("Mot de passe");
-                                final EditText input = new EditText(getActivity());
-                                alert.setView(input);
-
-                                alert.setPositiveButton("Valider", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-
-
-                                    }
-                                });
-                                alert.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        // Canceled.
-                                    }
-                                });
-                                alert.show();
-
-
-                            }
-                        });
-                        alert.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                // Canceled.
-                            }
-                        });
-
-                        alert.show();
-                    }
-                });
-
-            alert.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        // Canceled.
-                    }
-                });
-
-        alert.show();
-    }
 }
 
 
