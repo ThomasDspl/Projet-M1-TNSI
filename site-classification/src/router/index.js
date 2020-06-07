@@ -5,6 +5,7 @@ import Login from '../components/Login.vue';
 import Upload from '../components/Upload.vue'
 import Classement from '../components/Classement.vue'
 import Statistique from '../components/Statistique.vue';
+import Profile from '../components/Profile.vue';
 import VueResource from "vue-resource";
 
 Vue.use(VueRouter);
@@ -36,6 +37,11 @@ const routes = [
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile
     },
     {
       path: '*',

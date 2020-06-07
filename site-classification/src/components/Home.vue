@@ -1,9 +1,11 @@
 <template>
-  <div class="hello">
-    <h1>Bienvenue sur DetriClass (version alpha)</h1>
-    <p>Ce site permet de voir des statistiques sur le nombre de déchets sur les bords de routes.</p>
-    <p>il permet aussi d'envoyer vos propres photos pour analyse.</p>
-    <p>Un classement peut aussi être consulter.</p>
+  <div class="container">
+    <h1>Bienvenue sur DetriClass</h1>
+    <div class="underTitle">
+      <p>Ce site permet de voir des statistiques sur le nombre de déchets sur les bords de routes</p>
+      <p>Il permet aussi d'envoyer vos propres photos pour analyse</p>
+      <p>Un classement peut aussi être consulté</p>
+    </div>
   </div>
 </template>
 
@@ -18,18 +20,24 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.container {
+    font-size: x-large;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+.underTitle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+h1 {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }
-a {
-  color: #42b983;
-}
+
 </style>

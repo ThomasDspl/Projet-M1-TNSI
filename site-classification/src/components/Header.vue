@@ -5,15 +5,15 @@
              <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
               <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
-                    <b-nav-item :to="{path: '/stats'}"> Statistique</b-nav-item>
-                    <b-nav-item :to="{path: '/upload'}">Upload Image</b-nav-item>
+                    <b-nav-item :to="{path: '/stats'}"> Statistiques</b-nav-item>
+                    <b-nav-item :to="{path: '/upload'}">Upload une image</b-nav-item>
                     <b-nav-item :to="{path: '/classement'}">Classement</b-nav-item>
                     <b-nav-item-dropdown v-if='loginStatus' right>
                     <!-- Using 'button-content' slot -->
                         <template v-slot:button-content>
                             <em>Mon Compte</em>
                         </template>
-                        <b-dropdown-item >Profile</b-dropdown-item>
+                        <b-dropdown-item :to="{path: '/profile'}">Profile</b-dropdown-item>
                         <b-dropdown-item @click='logOut'>Log Out</b-dropdown-item>
                     </b-nav-item-dropdown>
                     <b-nav-item v-else :to="{path: '/login'}">Login</b-nav-item>
