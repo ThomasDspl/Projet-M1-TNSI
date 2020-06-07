@@ -51,7 +51,7 @@ public class PhotoFragment extends Fragment {
 
         View inflatedView = null;
         if(SaveSharedPreference.getUserName(getActivity().getBaseContext()).length() == 0) {
-            inflatedView = inflater.inflate(R.layout.fragment_photo2, container, false);
+            inflatedView = inflater.inflate(R.layout.fragment_photo, container, false);
         }
         else {
             inflatedView = inflater.inflate(R.layout.fragment_photo2, container, false);

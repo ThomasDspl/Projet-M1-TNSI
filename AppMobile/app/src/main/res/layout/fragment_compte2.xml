@@ -43,12 +43,21 @@
 
 
     <Button
-        android:id="@+id/btn_moddifier"
+        android:id="@+id/btn_modifier"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Modifier"
         android:layout_below="@+id/description"
+        android:layout_marginTop="40dp"
+        />
+    <Button
+        android:id="@+id/btn_deconnexion"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Déconnexion"
+        android:layout_below="@+id/btn_modifier"
         android:layout_marginTop="40dp"
         />
 
