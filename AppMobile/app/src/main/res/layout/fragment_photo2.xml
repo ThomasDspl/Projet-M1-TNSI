@@ -43,13 +43,13 @@
 
 
     <ImageView
+        android:id="@+id/imageView_photo"
         android:layout_width="242dp"
         android:layout_height="238dp"
-        android:layout_below="@id/text_apercu"
-         />
+        android:layout_below="@id/text_apercu" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/btn_cherchePhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/edit_photo"
