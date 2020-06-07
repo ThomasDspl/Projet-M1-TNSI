@@ -112,6 +112,7 @@ public class PhotoFragment extends Fragment {
                     try {
                         jsonBody = new JSONObject();
                         jsonBody.put("image", strToSend);
+                        jsonBody.put("pseudo", SaveSharedPreference.getUserName(getActivity()));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -140,10 +141,9 @@ public class PhotoFragment extends Fragment {
                     );
 
                     getRequest.setRetryPolicy(new DefaultRetryPolicy(
-                            10000,
+                            25000,
                             0,
                             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
 
                     MySingleton.getInstance(getActivity().getBaseContext()).addToRequestQueue(getRequest);
                 }
