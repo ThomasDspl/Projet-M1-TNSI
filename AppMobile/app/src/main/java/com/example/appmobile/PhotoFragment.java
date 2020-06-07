@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -58,6 +60,8 @@ public class PhotoFragment extends Fragment {
     ImageView viewPhoto;
     Button validerPhoto;
     int RESULT_LOAD_IMAGE;
+    ViewPager vp;
+    TextView connexionMsg;
 
     @Nullable
     @Override
@@ -65,7 +69,18 @@ public class PhotoFragment extends Fragment {
 
         View inflatedView = null;
         if(SaveSharedPreference.getUserName(getActivity().getBaseContext()).length() == 0) {
-            inflatedView = inflater.inflate(R.layout.fragment_photo2, container, false);
+            inflatedView = inflater.inflate(R.layout.fragment_photo, container, false);
+            vp = (ViewPager) getActivity().findViewById(R.id.view_pager);
+
+            connexionMsg = inflatedView.findViewById(R.id.text_connexion);
+
+            connexionMsg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    vp.setCurrentItem(3);
+                }
+            });
+
         }
         else {
             inflatedView = inflater.inflate(R.layout.fragment_photo, container, false);
@@ -149,7 +164,6 @@ public class PhotoFragment extends Fragment {
                 }
             });
         }
-
 
         return inflatedView;
     }
