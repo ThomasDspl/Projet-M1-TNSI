@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:scrollbars="vertical"
+    >
+
+    <TextView
+        android:id="@+id/title_photo"
+        android:text="Ajouter Photo"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:layout_width="403dp"
+        android:layout_height="123dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <TextView
+        android:id="@+id/text_apercu"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/title_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aperçu photo :"
+        android:textSize="20dp"
+        />
+
+
+    <ImageView
+        android:id="@+id/imageView_photo"
+        android:layout_width="308dp"
+        android:layout_height="321dp"
+        android:layout_below="@id/text_apercu"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="50dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ajouter_photo" />
+
+    <Button
+        android:id="@+id/btn_valider"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/imageView_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valider"/>
+    <ProgressBar
+        android:id="@+id/ProgressBar_photo"
+        android:layout_below="@+id/btn_valider"
+        android:layout_centerHorizontal="true"
+        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
+        android:indeterminate="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>
