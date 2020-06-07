@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,78 +29,122 @@ import org.json.JSONObject;
 public class CompteFragment extends Fragment {
 
     private RequestQueue queue;
+    Button inscrire;
+    Button connexion;
+    Button deconnexion;
+    EditText editEmail;
+    EditText editMdp;
+    TextView helloUsername;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_compte, container, false);
-        Button inscrire = rootView.findViewById(R.id.btn_inscrire);
-        Button connexion  = rootView.findViewById(R.id.btn_connecter);
-
-        final EditText editEmail  = rootView.findViewById(R.id.editmail_connexion);
-        final EditText editMdp = rootView.findViewById(R.id.editmdp_connexion);
 
 
+        View inflatedView = null;
+        if(SaveSharedPreference.getUserName(getActivity().getBaseContext()).length() == 0) {
+            inflatedView = inflater.inflate(R.layout.fragment_compte, container, false);
+
+            inscrire = inflatedView.findViewById(R.id.btn_inscrire);
+            connexion  = inflatedView.findViewById(R.id.btn_connecter);
+
+            editEmail  = inflatedView.findViewById(R.id.editmail_connexion);
+            editMdp = inflatedView.findViewById(R.id.editmdp_connexion);
 
 
-        inscrire.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        connexion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String email = editEmail.getText().toString();
-                String password = editMdp.getText().toString();
-
-                queue = Volley.newRequestQueue(getActivity().getBaseContext());
-                JSONObject jsonBody = null;
 
 
-                try {
-                    jsonBody = new JSONObject();
-                    jsonBody.put("email", email);
-                    jsonBody.put("password", password);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            inscrire.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), RegisterActivity.class);
+                    startActivity(intent);
                 }
-                String url = "http://" + getResources().getString(R.string.baseURL) + "/API/users/logging";
+            });
 
-                JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>()
-                {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        // display response
-                        Log.d("Response", response.toString());
-                        Intent intent = new Intent(getActivity(), MainActivity.class);
-                        startActivity(intent);
+            connexion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    String email = editEmail.getText().toString();
+                    String password = editMdp.getText().toString();
+
+                    queue = Volley.newRequestQueue(getActivity().getBaseContext());
+                    JSONObject jsonBody = null;
+
+
+                    try {
+                        jsonBody = new JSONObject();
+                        jsonBody.put("email", email);
+                        jsonBody.put("password", password);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                },
-                        new Response.ErrorListener()
-                        {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Log.d("Error.Response", error.toString());
+                    String url = "http://" + getResources().getString(R.string.baseURL) + "/API/users/logging";
+
+                    JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>()
+                    {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            // display response
+                            Log.d("Response", response.toString());
+
+                            try {
+                                SaveSharedPreference.setUserName(getActivity(), response.getString("pseudo"));
+                                Log.d("Response", "username : " + SaveSharedPreference.getUserName(getActivity()));
                             }
+                            catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
                         }
-                );
+                    },
+                            new Response.ErrorListener()
+                            {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Log.d("Error.Response", error.toString());
+                                }
+                            }
+                    );
 
-                getRequest.setRetryPolicy(new DefaultRetryPolicy(
-                        3000,
-                        0,
-                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                    getRequest.setRetryPolicy(new DefaultRetryPolicy(
+                            3000,
+                            0,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 
-                MySingleton.getInstance(getActivity().getBaseContext()).addToRequestQueue(getRequest);
-            }
-        });
+                    MySingleton.getInstance(getActivity().getBaseContext()).addToRequestQueue(getRequest);
+                }
+            });
+        }
 
-        return rootView;
+        else {
+
+            inflatedView = inflater.inflate(R.layout.fragment_compte2, container, false);
+
+
+            helloUsername = inflatedView.findViewById(R.id.text_helloUsername);
+            deconnexion = inflatedView.findViewById(R.id.btn_deconnexion);
+
+            helloUsername.setText("Bonjour " + SaveSharedPreference.getUserName(getActivity()));
+
+            deconnexion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SaveSharedPreference.clearUserName(getActivity());
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+
+        }
+
+
+
+        return inflatedView;
     }
 }
