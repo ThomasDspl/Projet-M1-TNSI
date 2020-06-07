@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_green_light"
+    >
+
+    <TextView
+        android:id="@+id/title_photo"
+        android:text="Ajouter Photo"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:layout_width="403dp"
+        android:layout_height="123dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edit_photo"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_photo"
+        android:layout_marginTop="74dp" />
+
+    <TextView
+        android:id="@+id/text_apercu"
+        android:layout_below="@id/edit_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aperçu photo :"
+        android:textSize="20dp"
+        android:layout_marginTop="147dp"
+        />
+
+
+    <ImageView
+        android:layout_width="242dp"
+        android:layout_height="238dp"
+        android:layout_below="@id/text_apercu"
+         />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_photo"
+        android:layout_alignEnd="@id/edit_photo"
+        android:layout_alignRight="@id/edit_photo"
+        android:layout_marginTop="-55dp"
+        android:layout_marginEnd="-58dp"
+        android:layout_marginRight="-58dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/ic_menu_ajoutphoto" />
+
+</RelativeLayout>
