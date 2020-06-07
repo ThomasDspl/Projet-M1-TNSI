@@ -50,36 +50,34 @@ public class PhotoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View inflatedView = null;
-        if(SaveSharedPreference.getUserName(getActivity().getBaseContext()).length() != 0) {
-            inflatedView = inflater.inflate(R.layout.fragment_photo2, container, false);
-        }
-        else{
+        if(SaveSharedPreference.getUserName(getActivity().getBaseContext()).length() == 0) {
             inflatedView = inflater.inflate(R.layout.fragment_photo, container, false);
         }
+        else {
+            inflatedView = inflater.inflate(R.layout.fragment_photo2, container, false);
 
-        cherchePhoto = inflatedView.findViewById(R.id.btn_cherchePhoto);
-        viewPhoto = inflatedView.findViewById(R.id.imageView_photo);
 
-        cherchePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-                {
-                    requestPermissions(
-                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                            2000);
-                }
-                else {
-                    try{
-                        Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        startActivityForResult(i, RESULT_LOAD_IMAGE);
+            cherchePhoto = inflatedView.findViewById(R.id.btn_cherchePhoto);
+            viewPhoto = inflatedView.findViewById(R.id.imageView_photo);
+
+            cherchePhoto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        requestPermissions(
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                2000);
+                    } else {
+                        try {
+                            Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                            startActivityForResult(i, RESULT_LOAD_IMAGE);
+                        } catch (Exception exp) {
+                            Log.i("Error", exp.toString());
+                        }
                     }
-                    catch(Exception exp){
-                        Log.i("Error",exp.toString());
-                    }
                 }
-            }
-        });
+            });
+        }
 
 
         return inflatedView;
