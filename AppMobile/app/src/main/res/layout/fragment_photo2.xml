@@ -28,6 +28,7 @@
 
     <TextView
         android:id="@+id/text_apercu"
+        android:layout_centerHorizontal="true"
         android:layout_below="@id/title_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,20 +42,9 @@
         android:layout_width="396dp"
         android:layout_height="462dp"
         android:src="@drawable/ajouter_photo"
-        android:layout_below="@id/text_apercu" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_cherchePhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_apercu"
-        android:layout_alignEnd="@id/text_apercu"
-        android:layout_alignRight="@id/text_apercu"
-        android:layout_marginTop="-55dp"
-        android:layout_marginEnd="-58dp"
-        android:layout_marginRight="-58dp"
+        android:focusable="true"
         android:clickable="true"
-        app:srcCompat="@drawable/ic_menu_ajoutphoto" />
+        android:layout_below="@id/text_apercu" />
 
     <Button
         android:id="@+id/btn_valider"

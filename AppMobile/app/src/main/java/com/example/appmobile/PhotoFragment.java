@@ -51,16 +51,16 @@ public class PhotoFragment extends Fragment {
 
         View inflatedView = null;
         if(SaveSharedPreference.getUserName(getActivity().getBaseContext()).length() == 0) {
-            inflatedView = inflater.inflate(R.layout.fragment_photo, container, false);
+            inflatedView = inflater.inflate(R.layout.fragment_photo2, container, false);
         }
         else {
             inflatedView = inflater.inflate(R.layout.fragment_photo2, container, false);
 
 
-            cherchePhoto = inflatedView.findViewById(R.id.btn_cherchePhoto);
+
             viewPhoto = inflatedView.findViewById(R.id.imageView_photo);
 
-            cherchePhoto.setOnClickListener(new View.OnClickListener() {
+            viewPhoto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
