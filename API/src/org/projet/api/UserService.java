@@ -105,6 +105,7 @@ public class UserService {
 	@Path("/stats")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getStats() {
+		System.out.println("CLASSEMENT");
 		Response response = null;
 		String result = dataBaseService.getStatsImages();
 		if (result != null) {

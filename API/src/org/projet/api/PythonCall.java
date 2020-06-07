@@ -1,5 +1,11 @@
 package org.projet.api;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+
 import org.projet.api.constantes.Chemins;
 
 
@@ -9,17 +15,16 @@ import org.projet.api.constantes.Chemins;
  *
  */
 public class PythonCall {
-	public final static String DOSSIER_MODELE = "C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Modele_IA\\";
 	Process mProcess;
-
+	Chemins c = Chemins.getInstance();
 	public void runScript(String path, String pathResult) {
 		Process process;
 		try {
 			//on construit le Process pour executer le script python
-			ProcessBuilder pb = new ProcessBuilder("python", 
-					Chemins.DOSSIER_MODELE + "classifieur.py", 
+			ProcessBuilder pb = new ProcessBuilder(c.getPATH_PYTHON(), 
+					c.getDOSSIER_MODELE() + "classifieur.py", 
 					path, 
-					Chemins.DOSSIER_MODELE + "poids_modele\\poids",
+					c.getDOSSIER_MODELE() + "poids_modele\\poids",
 					pathResult);
 			process = pb.start();
 			mProcess = process;
@@ -29,18 +34,18 @@ public class PythonCall {
 		
 		// Permet d'afficher la sortie terminal du script dans la console
 		
-//		InputStream stdout = mProcess.getInputStream();
-//		InputStream stsin = mProcess.getErrorStream();
-//		BufferedReader reader = new BufferedReader(new InputStreamReader(stdout, StandardCharsets.UTF_8));
-//		BufferedReader readerError = new BufferedReader(new InputStreamReader(stsin, StandardCharsets.UTF_8));
-//		String line;
-//		try {
-//			while (((line = reader.readLine()) != null) || ((line = readerError.readLine()) != null)) {
-//				System.out.println("stdout: " + line);
-//			}
-//		} catch (IOException e) {
-//			System.out.println("Exception in reading output" + e.toString());
-//		}
+		InputStream stdout = mProcess.getInputStream();
+		InputStream stsin = mProcess.getErrorStream();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(stdout, StandardCharsets.UTF_8));
+		BufferedReader readerError = new BufferedReader(new InputStreamReader(stsin, StandardCharsets.UTF_8));
+		String line;
+		try {
+			while (((line = reader.readLine()) != null) || ((line = readerError.readLine()) != null)) {
+				System.out.println("stdout: " + line);
+			}
+		} catch (IOException e) {
+			System.out.println("Exception in reading output" + e.toString());
+		}
 	}
 
 }

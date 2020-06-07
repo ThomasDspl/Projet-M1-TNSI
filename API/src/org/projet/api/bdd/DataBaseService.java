@@ -21,7 +21,7 @@ import org.projet.api.User;
 import org.projet.api.constantes.Chemins;
 
 public class DataBaseService {
-
+	Chemins c = Chemins.getInstance();
 	public User getUser() {
 		return BDD.getInstance().getMapUser().get(1);
 	}
@@ -210,9 +210,9 @@ public class DataBaseService {
 			PythonCall scriptPython = new PythonCall();
 			String path = imagePath + imageName;
 			//On appelle le modele de classification avec le chemin de l'image et le chemin de sortie pour le json genérer
-			scriptPython.runScript(path, Chemins.DOSSIER_MODELE);
+			scriptPython.runScript(path, c.getDOSSIER_MODELE());
 			//Ouverture du json générer par le modele
-			File prediction = new File(Chemins.DOSSIER_MODELE+"prediction.json");
+			File prediction = new File(c.getDOSSIER_MODELE()+"prediction.json");
 			Scanner myReader;
 			String jsonText = "";
 			try {
@@ -232,6 +232,9 @@ public class DataBaseService {
 			Image imageBDD = new Image(id, imagePath, imageName, classe);
 			Transaction tx = session.beginTransaction();
 			session.persist(imageBDD);
+			User uploaderU = session.load(User.class, id);
+			uploaderU.setScore(uploaderU.getScore() + 1);
+			session.update(uploaderU);
 			tx.commit();
 			session.close();
 			//creation du json de sortie

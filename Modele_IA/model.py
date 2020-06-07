@@ -65,7 +65,7 @@ def importation_et_traitement_images(path_donnees_cvs):
     return images, labels
 
 #definition des groupes d'images servant pour l'entrainement du modèle et pour tester le modèle
-def creation_train_et_test_images(pourcenatge_train = 60):
+def creation_train_et_test_images(pourcenatge_train = 70):
     #on prends 60% des données pour l'entrainement
     train_images = images[0: (len(images)*pourcenatge_train)//100]
     train_labels = labels[0: (len(labels)*pourcenatge_train)//100]
@@ -107,11 +107,11 @@ if(__name__ == '__main__'):
     images, labels = importation_et_traitement_images('./BANK_images/donnees.cvs')
     model = creation_modele()
     train_images, train_labels, test_images, test_labels = creation_train_et_test_images()
-    train_model(model, train_images, train_labels, 15)
+    train_model(model, train_images, train_labels, 30)
     loss, acc = test_model(model, test_images, test_labels)
     #Affichage de la précision
     print('\nTest accuracy:', acc)
-    sauvegarde_poids_model(model, './poids_modele/poids')
+    sauvegarde_poids_model(model, './poids_modele2/poids')
 
 
 

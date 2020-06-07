@@ -22,7 +22,7 @@ import org.projet.api.constantes.Chemins;
 public class ImageService {
 
 	DataBaseService dataBaseService = new DataBaseService();
-
+	Chemins c = Chemins.getInstance();
 
 	/**
 	 * Permet de classifier et de mettre en base une image
@@ -34,6 +34,7 @@ public class ImageService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response postImage(final String input) {
+		System.out.println("CHEMINS: \n"+c.getDOSSIER_IMAGE() + "\n"+ c.getDOSSIER_MODELE());
 		try {
 			String name = "";
 			//récupération du Json
@@ -55,14 +56,14 @@ public class ImageService {
 			//Déchhiffrage de l'image: on récupère un tableau d'octet
 			byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(data);
 			//Crréation du fichier image
-			String file = Chemins.DOSSIER_IMAGE + name;
+			String file = c.getDOSSIER_IMAGE() + name;
 			File outputfile = new File(file);
 			//On écrit dans le fichier les octets de l'images
 			OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputfile));
 			outputStream.write(imageBytes);
 			outputStream.close();
 			//on appelle uploadImage pour avoir sa classe et la mettre en base
-			String result = dataBaseService.uploadImage(name, pseudoUploader, Chemins.DOSSIER_IMAGE);
+			String result = dataBaseService.uploadImage(name, pseudoUploader, c.getDOSSIER_IMAGE());
 			if(result != "") {
 				return Response.ok().entity(result).build(); 
 			}else {
