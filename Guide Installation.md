@@ -20,6 +20,7 @@ Pour faire fonctionner ce projet, il vous faudra :
 # Etape 3 : le back
 - Pour cela, il faut telécharger le fichier **API.war** est le dézipper dans un dossier API que vous aurez créer au préalable. 
 - Il vous faut aussi télécharger le dossier **Modele_IA** et créer un autre dossier **Images**.
+- Aller dans le dossier **Modele_IA** , dans le sous-dossier **poids_modele** est dézipper poids.7z.001 pour obtenir un fichier **poids.data-00000-of-00001**
 - Ensuite, il faut modifier le fichier **conf.json** dans ```API/WEB-INF/classes```. Il vous faut mettre les chemins 
     - de votre dossier **Modele_IA** (sous la forme ```/path/to/Modele_IA/```, le dernier **/** est **important**), 
     - de votre dossier **Image** (sous la forme ```/path/to/Images/```, le dernier **/** est **important**)
