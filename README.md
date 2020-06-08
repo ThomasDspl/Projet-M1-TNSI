@@ -13,7 +13,9 @@ Cette partie est composé de 2 application : un site web en [Vue.js](https://vue
 ![gif site_web](https://nsa40.casimages.com/img/2020/06/08/200608040737965074.gif)
 
 ## Application mobile:
-![gif app]()
+![gif app](https://nsa40.casimages.com/img/2020/06/09/2006091228521269.gif)
+
+(_version pre-alpha_)
 
 ___
 
