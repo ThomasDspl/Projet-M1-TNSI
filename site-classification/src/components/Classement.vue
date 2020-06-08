@@ -12,11 +12,6 @@
       return {
         fields: [
           {
-            key: 'rank',
-            label: 'Rang',
-            sortable: true,
-          },
-          {
             key: 'pseudo',
             sortable: true
           },
