@@ -32,7 +32,7 @@ CREATE TABLE `image` (
   UNIQUE KEY `idImage_UNIQUE` (`idImage`),
   KEY `fk_user_idx` (`idUser`),
   CONSTRAINT `fk_user` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,6 @@ CREATE TABLE `image` (
 
 LOCK TABLES `image` WRITE;
 /*!40000 ALTER TABLE `image` DISABLE KEYS */;
-INSERT INTO `image` VALUES (4,1,'1','1','1'),(5,1,'2','2','0'),(6,2,'3','5','1'),(7,2,'2','2','2'),(8,1,'C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Images','test.png','2'),(9,1,'C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Images','test.png','2'),(10,1,'C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Images\\','test.png','2'),(11,1,'C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Images\\','test2.png','2'),(12,1,'C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Images\\','test3.png','2'),(13,1,'C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Images\\','f64a1550a7d345f48eee74965b1d80b2xX_jonh_Xx.png','2'),(14,1,'C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Images\\','8183f634ba984464be650ce19ad23d3axX_jonh_Xx.png','2'),(15,1,'C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Images\\','2a44cf74fe35414eb02ef091d1172a0exX_jonh_Xx.png','0'),(16,1,'C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Images\\','18ec448e9791400e8ed20da647e3eb90xX_jonh_Xx.png','2'),(17,1,'C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Images\\','0e4f3cf11f774b5aa0623eed4debe6ffxX_jonh_Xx.png','2'),(18,3,'C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Images\\','105e02c71f0d4bdc990594e132d4af75a.png','2'),(19,3,'C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Images\\','dd7fb155b0bf45e39efe70696f50da25a.png','2'),(20,3,'C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Images\\','15cb63530e264a969bede081fb0a8ac9a.png','2'),(21,3,'C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Images\\','c91ca8bc9d794c048778374ef51a9769a.png','2');
 /*!40000 ALTER TABLE `image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,7 +101,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'b@b.com','9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08','Smith','John',0,'xX_jonh_Xx'),(2,'c@b.com','9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08','Smith','John',0,'yY_jinh_Xx'),(3,'aa@aa.com','CA978112CA1BBDCAFAC231B39A23DC4DA786EFF8147C4E72B9807785AFEE48BB','a','a',0,'a'),(4,'yop@yop.fr','AB4DD0315EB9F3EC424AB4A94472412812905C1EF737D1002DA84DE2D1427531','Cacheux','Kevin',0,'yop');
+INSERT INTO `user` VALUES (1,'b@b.com','9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08','Smith','John',13,'xX_jonh_Xx'),(2,'c@b.com','9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08','Smith','John',0,'yY_jinh_Xx'),(3,'aa@aa.com','CA978112CA1BBDCAFAC231B39A23DC4DA786EFF8147C4E72B9807785AFEE48BB','a','a',2,'a'),(4,'t@t.com','9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08','test','test',14,'test'),(5,'test@test.com','9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08','Pierre','Paul',8,'Jack'),(6,'trehou.thomas@outlook.fr','03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4','Tréhou','Thomas',2,'Soizik'),(7,'tt','CBD3CFB9B9F51BBBFBF08759E243F5B3519CBF6ECC219EE95FE7C667E32C0A8D','t','t',0,'g');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -115,4 +114,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-07  0:42:07
+-- Dump completed on 2020-06-08 23:21:52
