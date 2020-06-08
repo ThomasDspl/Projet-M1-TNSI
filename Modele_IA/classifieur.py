@@ -11,7 +11,6 @@ from model import creation_modele
 
 #Definition nom des classes (ici 0= bouteille en plastique par ex)
 CLASS_NAME = ['bouteille en plastique', 'sac en plastique', 'canette']
-PATH_POIDS = "‪C:\\Users\\Romain\\Documents\\Projet-M1-TNSI - Copie\\Modele_IA\\poids_modele\\poids"
 
 my_devices = tf.config.experimental.list_physical_devices(device_type='CPU')
 tf.config.experimental.set_visible_devices(devices= my_devices, device_type='CPU')
@@ -32,9 +31,9 @@ def classifier_image(path_image):
         'image' : path_image, 
         'prediction': str(np.argmax(predictions)), 
         'prediction_propabilite' : {
-            '0': str(round(predictions[0][0], 2)),
-            '1': str(round(predictions[0][1], 2)),
-            '2': str(round(predictions[0][2], 2))
+            'c_0': str(round(predictions[0][0], 2)),
+            'c_1': str(round(predictions[0][1], 2)),
+            'c_2': str(round(predictions[0][2], 2))
         }
     }
     # print("Prediction: " + str(predictions))
