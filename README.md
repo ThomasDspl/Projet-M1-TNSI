@@ -26,5 +26,5 @@ Le back ici est une application JEE qui va proposer une API REST qui va permettr
 ___
 
 # Modèle
-Le modèle est créer à partie de [Tensorflow](http://tensorflow.org/). C'est un modèle avec d'abord une couche d'extraction des caractéristique de l'objet avant de faire la classification.
+Le modèle est créer à partie de [Tensorflow](http://tensorflow.org/). C'est un modèle avec d'abord une couche d'extraction des caractéristique de l'objet avant de faire la classification. (**ATTENTION : IL Y A UN FICHIER A TELECHARGER dans dossier Modele_IA/poids et à mettre dans le dit dossier ! Lien dans le dossier**)
 ![image_modele](https://nsa40.casimages.com/img/2020/06/08/200608042048189473.png) 
