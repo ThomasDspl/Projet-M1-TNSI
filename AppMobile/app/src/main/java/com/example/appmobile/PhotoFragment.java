@@ -159,7 +159,29 @@ public class PhotoFragment extends Fragment {
                         public void onResponse(JSONObject response) {
                             // display response
                             Log.d("Response", response.toString());
-                            Toasty.success(getActivity().getBaseContext(),"Transfert réussi !",10000,true).show();
+                            JSONObject jsresponse=null;
+                            try {
+                                 jsresponse= new JSONObject(response.toString());
+                                 String classeobjet= jsresponse.getString("class");
+                                 String switchresult="";
+                                 switch (classeobjet){
+                                     case "0":
+                                         switchresult="Bouteille en plastique";
+                                         break;
+                                     case"1":
+                                         switchresult="Sac en plastique";
+                                         break;
+                                     case"2":
+                                         switchresult="Cannette";
+                                         break;
+                                 }
+                                 Toasty.success(getActivity().getBaseContext(),"Transfert réussi !\n"+switchresult+" trouvé(e) !",10000,true).show();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+
                             Intent intent = new Intent(getActivity(), MainActivity.class);
                             startActivity(intent);
                         }
