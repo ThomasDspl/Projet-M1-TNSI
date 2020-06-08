@@ -13,6 +13,7 @@
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
     "mysql": "^2.18.1",
+    "npm-upgrade": "^2.0.3",
     "vue": "^2.6.11",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.3.2",

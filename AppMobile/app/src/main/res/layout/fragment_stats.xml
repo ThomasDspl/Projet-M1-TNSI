@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/title_stats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Statistiques"
+        android:gravity="center"
+        android:textSize="30dp"/>
+    <TextView
+        android:id="@+id/text_description"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_stats"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:text="A ce jour, l'application a analysé :"/>
+
+    <TextView
+        android:id="@+id/nombre_image"
+        android:textStyle="bold"
+        android:layout_below="@+id/text_description"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20dp"
+
+        android:gravity="center_horizontal" />
+    <TextView
+        android:id="@+id/text_description2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/nombre_image"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:text="Parmis ces images, nous avons détecté :"/>
+
+    <TextView
+        android:id="@+id/text_description3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/text_description2"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+
+</RelativeLayout>

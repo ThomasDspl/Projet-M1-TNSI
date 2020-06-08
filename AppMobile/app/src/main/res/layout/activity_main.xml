@@ -9,6 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#568203"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <TextView
@@ -25,10 +26,8 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:tabMode="scrollable"
-            />
-
+            android:background="#6BA304"
+            app:tabMode="scrollable" />
 
 
     </com.google.android.material.appbar.AppBarLayout>

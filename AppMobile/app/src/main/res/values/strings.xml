@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">AppMobile</string>
+    <string name="app_name">Detriclass</string>
     <string name="tab_text_1">Accueil</string>
     <string name="tab_text_2">Ajouter une photo</string>
-    <string name="tab_text_3">Classement</string>
+    <string name="tab_text_3">Stats</string>
     <string name="tab_text_4">Compte</string>
     <string name="tab_text_5">Connexion</string>
     <string name="title_activity_register">Sign in</string>
@@ -19,6 +19,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="messageWithLink"><a href="fragment_compte.xml">Connectez vous</a></string>
-    <string name="baseURL">25.93.255.33:8080</string>
+    <!--<string name="baseURL">25.93.255.33:8080</string>-->
+    <string name="baseURL">localhost:8080</string>
 
 </resources>

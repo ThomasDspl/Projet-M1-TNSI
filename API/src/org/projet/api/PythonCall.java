@@ -24,7 +24,7 @@ public class PythonCall {
 			ProcessBuilder pb = new ProcessBuilder(c.getPATH_PYTHON(), 
 					c.getDOSSIER_MODELE() + "classifieur.py", 
 					path, 
-					c.getDOSSIER_MODELE() + "poids_modele\\poids",
+					c.getDOSSIER_MODELE() + "poids_modele/poids",
 					pathResult);
 			process = pb.start();
 			mProcess = process;

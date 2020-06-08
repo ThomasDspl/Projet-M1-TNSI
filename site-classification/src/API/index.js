@@ -1,5 +1,5 @@
 import Vue from "vue";
-const API_BASE_URL = "http://25.93.255.33:8080/";
+const API_BASE_URL = "http://localhost:8080/";
 
 export default class apiClass{
     static newUser(json) {

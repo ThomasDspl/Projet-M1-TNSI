@@ -52,7 +52,7 @@ public class ImageService {
 				sb.append(s);
 			}
 			sb.append(pseudoUploader);
-			name = sb.toString() + ".png";
+			name = sb.toString() + ".jpg";
 			//Déchhiffrage de l'image: on récupère un tableau d'octet
 			byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(data);
 			//Crréation du fichier image

@@ -21,12 +21,14 @@
         <text id='b64' style="visibility:hidden;"></text>
         <br />
         <br />
+        <b-overlay :show="show" rounded="sm">
         <p v-if="img">Selon notre analyse, votre image correspond à {{ img }}, ce choix correspond au probabilités suivantes :</p>
         <ul v-if="img">
           <li>Bouteille en plastique : {{ imgData.proba.c_0 * 100 }}%</li>
           <li>Sac en plastique : {{ imgData.proba.c_1 * 100 }}%</li>
           <li>Canette : {{ imgData.proba.c_2 * 100 }}%</li>
         </ul>
+        </b-overlay>
       </div>
       <div v-else class="underTitle">
         <p>Vous devez être connecté pour accéder à cette fonctionnalité.</p>
@@ -44,7 +46,8 @@ export default {
         imgData: {},
         img: '',
         showDismissibleAlert: false,
-        alertMessage: ''
+        alertMessage: '',
+        show: false
       }
     },
     computed: {
@@ -75,10 +78,13 @@ export default {
         }
       },
       sendImage: function() {
+          this.show = true;
           apiClass.postImage(document.getElementById("b64").value, this.$session.get('pseudo')).then((response) => {
             this.imgData = response.body;
             this.image();
+            this.show = false;
           }).catch((error) => {
+            this.show = false;
             this.alertMessage = 'Erreur lors de l\'envoi de l\'image';
             this.showDismissibleAlert = true;
             console.error("ERROR", error);
