@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.appmobile.AccueilFragment;
-import com.example.appmobile.ClassementFragment;
+import com.example.appmobile.StatsFragment;
 import com.example.appmobile.CompteFragment;
 import com.example.appmobile.PhotoFragment;
 import com.example.appmobile.R;
@@ -42,7 +42,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
               fragment=new PhotoFragment();
               break;
           case 2:
-              fragment=new ClassementFragment();
+              fragment=new StatsFragment();
               break;
           case 3:
               fragment=new CompteFragment();

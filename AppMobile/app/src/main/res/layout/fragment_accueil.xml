@@ -1,41 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="#FFFFFF">
 
     <TextView
         android:id="@+id/title_accueil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Bienvenue sur Detriclass "
         android:textSize="30dp"
         android:textStyle="bold"
-        android:gravity="center"
         tools:ignore="MissingConstraints"
-         />
+
+        />
 
     <TextView
         android:id="@+id/text2_accueil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title_accueil"
-        android:textSize="20dp"
-        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:layout_marginTop="50dp"
         android:text="      Nous sommes des étudiants en M1 TNSI qui avons décidé avec l'aide de professeurs de créer une application
         qui trie les déchets selon leur catégorie (bouteilles, ,sacs plastiques, cannettes) grâce à une API que l'on a préalablement créé."
-        />
+        android:textSize="20dp" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_below="@id/text2_accueil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/text2_accueil"
         app:srcCompat="@drawable/logo_uphf" />
 
 

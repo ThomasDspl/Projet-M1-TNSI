@@ -8,20 +8,15 @@
     >
 
     <TextView
-        android:id="@+id/text_photo"
-        android:text="Ajouter Photo"
-        android:gravity="center"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:id="@+id/text_photo"
+    android:text="Ajouter Photo"
+    android:gravity="center"
+    android:textAllCaps="true"
+    android:textStyle="bold"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="20sp"
+    />
 
 
     <TextView
