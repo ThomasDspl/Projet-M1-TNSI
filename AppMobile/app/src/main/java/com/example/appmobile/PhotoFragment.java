@@ -3,6 +3,7 @@ package com.example.appmobile;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,6 +65,7 @@ public class PhotoFragment extends Fragment {
     ViewPager vp;
     TextView connexionMsg;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -72,18 +75,29 @@ public class PhotoFragment extends Fragment {
             inflatedView = inflater.inflate(R.layout.fragment_photo, container, false);
             vp = (ViewPager) getActivity().findViewById(R.id.view_pager);
 
+
             connexionMsg = inflatedView.findViewById(R.id.text_connexion);
 
             connexionMsg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     vp.setCurrentItem(3);
+
                 }
             });
 
         }
         else {
-            inflatedView = inflater.inflate(R.layout.fragment_photo, container, false);
+            inflatedView = inflater.inflate(R.layout.fragment_photo2, container, false);
+
+            //Début boîte de dialog du chargement
+            final ProgressDialog dialog=new ProgressDialog(getContext());
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setTitle("Transfert de l'image");
+            dialog.setMessage("Patientez...");
+            dialog.setIndeterminate(true);
+            dialog.setCanceledOnTouchOutside(false);
+            //Fin boîte de dialog chargement
 
 
             validerPhoto = inflatedView.findViewById(R.id.btn_valider);
@@ -110,6 +124,7 @@ public class PhotoFragment extends Fragment {
             validerPhoto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    dialog.show();
                     ByteArrayOutputStream stream=new ByteArrayOutputStream();
                     BitmapDrawable drawable = (BitmapDrawable) viewPhoto.getDrawable();
                     Bitmap bitmap = drawable.getBitmap();
@@ -150,6 +165,7 @@ public class PhotoFragment extends Fragment {
                             {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
+                                    dialog.dismiss();
                                     Log.d("Error.Response", error.toString());
                                 }
                             }
@@ -161,6 +177,7 @@ public class PhotoFragment extends Fragment {
                             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
                     MySingleton.getInstance(getActivity().getBaseContext()).addToRequestQueue(getRequest);
+                    //suppresion de la boite de dialog
                 }
             });
         }

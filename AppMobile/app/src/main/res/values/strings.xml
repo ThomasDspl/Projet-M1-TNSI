@@ -19,6 +19,6 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="messageWithLink"><a href="fragment_compte.xml">Connectez vous</a></string>
-    <string name="baseURL">25.93.255.33:8080</string>
+    <string name="baseURL">192.168.193.14:8080<!--Ip mon téléphone--><!--25.93.255.33:8080--></string>
 
 </resources>

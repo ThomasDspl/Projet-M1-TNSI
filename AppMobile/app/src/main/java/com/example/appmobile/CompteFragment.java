@@ -1,5 +1,6 @@
 package com.example.appmobile;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +36,8 @@ public class CompteFragment extends Fragment {
     EditText editEmail;
     EditText editMdp;
     TextView helloUsername;
+    TextView information;
+    TextView score;
 
     @Nullable
     @Override
@@ -50,6 +53,14 @@ public class CompteFragment extends Fragment {
 
             editEmail  = inflatedView.findViewById(R.id.editmail_connexion);
             editMdp = inflatedView.findViewById(R.id.editmdp_connexion);
+            //Début boîte de dialog du chargement
+            final ProgressDialog dialog=new ProgressDialog(getContext());
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setTitle("Connexion");
+            dialog.setMessage("Patientez...");
+            dialog.setIndeterminate(true);
+            dialog.setCanceledOnTouchOutside(false);
+            //Fin boîte de dialog chargement
 
 
 
@@ -65,7 +76,7 @@ public class CompteFragment extends Fragment {
             connexion.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    dialog.show();
                     String email = editEmail.getText().toString();
                     String password = editMdp.getText().toString();
 
@@ -93,6 +104,18 @@ public class CompteFragment extends Fragment {
                             try {
                                 SaveSharedPreference.setUserName(getActivity(), response.getString("pseudo"));
                                 Log.d("Response", "username : " + SaveSharedPreference.getUserName(getActivity()));
+
+
+                                ///sauvegarde des autres données
+                                SaveSharedPreference.setEmail(getActivity(), response.getString("email"));
+                                Log.d("Response", "email : " + SaveSharedPreference.getEmail(getActivity()));
+                                SaveSharedPreference.setLastName(getActivity(), response.getString("name"));
+                                Log.d("Response", "lastname : " + SaveSharedPreference.getLastName(getActivity()));
+                                SaveSharedPreference.setFirstName(getActivity(), response.getString("surname"));
+                                Log.d("Response", "firstname : " + SaveSharedPreference.getFirstName(getActivity()));
+                                SaveSharedPreference.setScore(getActivity(), response.getString("score"));
+                                Log.d("Response", "score : " + SaveSharedPreference.getScore(getActivity()));
+
                             }
                             catch (JSONException e) {
                                 e.printStackTrace();
@@ -111,7 +134,7 @@ public class CompteFragment extends Fragment {
                     );
 
                     getRequest.setRetryPolicy(new DefaultRetryPolicy(
-                            3000,
+                            30000,
                             0,
                             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
@@ -127,14 +150,25 @@ public class CompteFragment extends Fragment {
 
 
             helloUsername = inflatedView.findViewById(R.id.text_helloUsername);
+            information = inflatedView.findViewById(R.id.text_informatiion);
             deconnexion = inflatedView.findViewById(R.id.btn_deconnexion);
-
             helloUsername.setText("Bonjour " + SaveSharedPreference.getUserName(getActivity()));
 
+            //affichage des données
+            information.setText("Email : " + SaveSharedPreference.getEmail(getActivity())+
+                                "\nNom :"+ SaveSharedPreference.getLastName(getActivity())+
+                                "\nPrénom :"+ SaveSharedPreference.getFirstName(getActivity())+
+                                "\nScore :"+ SaveSharedPreference.getScore(getActivity()));
             deconnexion.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     SaveSharedPreference.clearUserName(getActivity());
+                    //suppression des données
+                    SaveSharedPreference.clearEmail(getActivity());
+                    SaveSharedPreference.clearLastName(getActivity());
+                    SaveSharedPreference.clearFirstName(getActivity());
+                    SaveSharedPreference.clearScore(getActivity());
+
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
                 }
