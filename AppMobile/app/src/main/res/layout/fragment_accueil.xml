@@ -25,9 +25,10 @@
         android:layout_below="@+id/title_accueil"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="50dp"
-        android:text="      Nous sommes des étudiants en M1 TNSI qui avons décidé avec l'aide de professeurs de créer une application
-        qui trie les déchets selon leur catégorie (bouteilles, ,sacs plastiques, cannettes) grâce à une API que l'on a préalablement créé."
+        android:text="\t\t\tNous sommes des étudiants en M1 TNSI qui avons décidé avec l'aide de professeurs de créer une application qui trie les déchets selon leur catégorie (bouteilles, sacs plastiques, cannettes) grâce à une API que l'on a préalablement créé."
         android:textSize="20dp" />
 
     <ImageView

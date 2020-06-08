@@ -28,6 +28,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import es.dmoral.toasty.Toasty;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -49,53 +53,66 @@ public class RegisterActivity extends AppCompatActivity {
                 String prenom = ((EditText)findViewById(R.id.prenom)).getText().toString();
                 String email = ((EditText)findViewById(R.id.email)).getText().toString();
                 String passwd = ((EditText)findViewById(R.id.password)).getText().toString();
+                String confirmepasswd = ((EditText)findViewById(R.id.password2)).getText().toString();
                 final String pseudo = ((EditText)findViewById(R.id.pseudo)).getText().toString();
+                if(nom.equals("")||prenom.equals("")||email.equals("")||passwd.equals("")||confirmepasswd.equals("")){
+                    Toasty.error(getBaseContext(), "Champ(s) vide(s)", 10000, true).show();
+                }else {
+                    final String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+                    Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+                    if(!pattern.matcher(email).matches()){
+                        Toasty.error(getBaseContext(), "email invalid", 10000, true).show();
+                    }else {
+                        queue = Volley.newRequestQueue(getBaseContext());
+                        JSONObject jsonBody = null;
 
-                queue = Volley.newRequestQueue(getBaseContext());
-                JSONObject jsonBody = null;
 
+                        try {
+                            jsonBody = new JSONObject();
+                            jsonBody.put("pseudo", pseudo);
+                            jsonBody.put("name", nom);
+                            jsonBody.put("surname", prenom);
+                            jsonBody.put("email", email);
+                            jsonBody.put("password", passwd);
 
-                try {
-                    jsonBody = new JSONObject();
-                    jsonBody.put("pseudo", pseudo);
-                    jsonBody.put("name", nom);
-                    jsonBody.put("surname", prenom);
-                    jsonBody.put("email", email);
-                    jsonBody.put("password", passwd);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                String url = "http://" + getResources().getString(R.string.baseURL) + "/API/users/registration";
-
-                JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>()
-                        {
+                        String url = "http://" + getResources().getString(R.string.baseURL) + "/API/users/registration";
+                        JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
                                 // display response
                                 Log.d("Response", response.toString());
+                                Toasty.success(getBaseContext(), "Bienvenue " + pseudo + "!", 10000, true).show();
                                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                                 startActivity(intent);
 
+
                             }
                         },
-                        new Response.ErrorListener()
-                        {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Log.d("Error.Response", error.toString());
-                            }
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toasty.error(getBaseContext(), "Username ou email déjà utilisé", 10000, true).show();
+                                        Log.d("Error.Response", error.toString());
+                                    }
+                                }
+                        );
+
+                        getRequest.setRetryPolicy(new DefaultRetryPolicy(
+                                0,
+                                0,
+                                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+                        if (passwd.equals(confirmepasswd) && !passwd.equals("")) {
+                            MySingleton.getInstance(getBaseContext()).addToRequestQueue(getRequest);
+                        } else {
+                            Toasty.error(getBaseContext(), "Mot de passe différents", 10000, true).show();
                         }
-                );
-
-                getRequest.setRetryPolicy(new DefaultRetryPolicy(
-                        0,
-                        0,
-                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-
-                MySingleton.getInstance(getBaseContext()).addToRequestQueue(getRequest);
+                    }
+                }
             }
         });
     }
