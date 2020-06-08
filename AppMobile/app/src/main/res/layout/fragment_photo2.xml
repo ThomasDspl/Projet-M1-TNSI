@@ -45,7 +45,7 @@
         android:layout_height="318dp"
         android:layout_below="@id/text_apercu"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="50dp"
         android:clickable="true"
         android:focusable="true"

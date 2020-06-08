@@ -31,7 +31,11 @@
         android:layout_width="match_parent"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20dp"
+
+        android:gravity="center_horizontal" />
     <TextView
         android:id="@+id/text_description2"
         android:layout_width="match_parent"
@@ -41,14 +45,18 @@
         android:layout_centerHorizontal="true"
         android:textSize="20dp"
         android:gravity="center"
-        android:text="Parmis ces images, nous avons détecter :"/>
+        android:text="Parmis ces images, nous avons détecté :"/>
 
-    <ListView
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
-        android:layout_below="@+id/text_description2"
+    <TextView
+        android:id="@+id/text_description3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/text_description2"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center" />
 
 
 </RelativeLayout>

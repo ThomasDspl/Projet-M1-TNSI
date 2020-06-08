@@ -129,12 +129,13 @@ public class CompteFragment extends Fragment {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     Log.d("Error.Response", error.toString());
+                                    dialog.dismiss();
                                 }
                             }
                     );
 
                     getRequest.setRetryPolicy(new DefaultRetryPolicy(
-                            30000,
+                            10000,
                             0,
                             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
@@ -156,9 +157,9 @@ public class CompteFragment extends Fragment {
 
             //affichage des données
             information.setText("Email : " + SaveSharedPreference.getEmail(getActivity())+
-                                "\nNom :"+ SaveSharedPreference.getLastName(getActivity())+
-                                "\nPrénom :"+ SaveSharedPreference.getFirstName(getActivity())+
-                                "\nScore :"+ SaveSharedPreference.getScore(getActivity()));
+                                "\nNom : "+ SaveSharedPreference.getLastName(getActivity())+
+                                "\nPrénom : "+ SaveSharedPreference.getFirstName(getActivity())+
+                                "\nScore : "+ SaveSharedPreference.getScore(getActivity()));
             deconnexion.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -173,11 +174,7 @@ public class CompteFragment extends Fragment {
                     startActivity(intent);
                 }
             });
-
-
         }
-
-
 
         return inflatedView;
     }
